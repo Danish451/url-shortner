@@ -13,7 +13,11 @@ function setUser(user) {
 function getUser(token) {
     if(!token)  return null;
     // return sessionIdToUserMap.get(id)
-    return jwt.verify(token, secret)
+    try {
+        return jwt.verify(token, secret)
+    } catch (error) {
+        return res.send(error)
+    }
 }
 
 module.exports = {
